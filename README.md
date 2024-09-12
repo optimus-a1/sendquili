@@ -13,9 +13,10 @@ vim sendquili.sh
 chmod +x sendquili.sh
 
 
-运行脚本
+在后台运行脚本
 
-./sendquili.sh
+./sendquili.sh &
+
 
 
 
