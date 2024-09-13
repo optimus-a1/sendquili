@@ -1,4 +1,4 @@
-本脚本用于每天10点查询Quili余额并发送到钉钉
+本脚本用于每天查询Quili余额并发送到钉钉
 
 wget -O sendquili.sh https://raw.githubusercontent.com/optimus-a1/sendquili/main/sendquili.sh 
 
@@ -15,7 +15,8 @@ chmod +x sendquili.sh
 
 在后台运行脚本
 
-./sendquili.sh &
+nohup ./sendquili.sh > /dev/null 2>&1 &
+
 
 
 
