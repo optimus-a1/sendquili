@@ -55,27 +55,11 @@ execute_and_send() {
     fi
 }
 
-# 计算从现在到下一个10:00的秒数
-calculate_sleep_duration() {
-    local current_time=$(TZ="Asia/Shanghai" date +%s)
-    local next_target_time=$(TZ="Asia/Shanghai" date -d "10:00 next day" +%s)
-
-    # 如果当前时间在10:00之前，则目标时间为今天的10:00
-    if [[ $(date +%H) -lt 10 ]]; then
-        next_target_time=$(TZ="Asia/Shanghai" date -d "10:00 today" +%s)
-    fi
-
-    echo $((next_target_time - current_time))
-}
-
 # 主循环
 while true; do
-    # 计算睡眠时间
-    sleep_duration=$(calculate_sleep_duration)
-
-    echo "等待 ${sleep_duration} 秒，直到北京时间10:00..." >> "$LOG_FILE"
-    sleep "$sleep_duration"
-
     # 执行任务
     execute_and_send
+
+    # 等待 24 小时（86400 秒）
+    sleep 86400
 done
